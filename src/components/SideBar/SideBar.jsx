@@ -4,11 +4,11 @@ function SideBar({ citiesCoordinates, handleCityClick }) {
   return (
     <Box
       sx={{
-        width: "450px",
         height: "100%",
         backgroundColor: "white",
         overflowY: "auto",
         padding: "16px",
+        flexGrow: 1,
       }}
     >
       <h1>Cities coordinates</h1>

@@ -11,7 +11,7 @@ function SideBarToggleButton({ isSideBarVisible, toggleSideBarVisibility }) {
         sx={{
           position: "absolute",
           top: "50%",
-          left: isSideBarVisible ? "10px" : "450px",
+          left: isSideBarVisible ? "30px" : "450px",
           transform: "translateY(-50%)",
           zIndex: 2,
         }}
@@ -19,7 +19,11 @@ function SideBarToggleButton({ isSideBarVisible, toggleSideBarVisibility }) {
         <IconButton
           onClick={toggleSideBarVisibility}
           style={{
-            color: "white",
+            color: "black",
+            backgroundColor: "white",
+            width: "30px",
+            height: "30px",
+            borderRadius: "50%",
           }}
         >
           {isSideBarVisible ? (
