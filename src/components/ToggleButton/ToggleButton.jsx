@@ -4,25 +4,29 @@ import {
 } from "@mui/icons-material";
 import { Box, IconButton } from "@mui/material";
 
-function SideBarToggleButton({ showSideBar, handleToggleSideBar }) {
+function SideBarToggleButton({ isSideBarVisible, toggleSideBarVisibility }) {
   return (
     <>
       <Box
         sx={{
           position: "absolute",
           top: "50%",
-          left: showSideBar ? "10px" : "450px",
+          left: isSideBarVisible ? "10px" : "450px",
           transform: "translateY(-50%)",
           zIndex: 2,
         }}
       >
         <IconButton
-          onClick={handleToggleSideBar}
+          onClick={toggleSideBarVisibility}
           style={{
             color: "white",
           }}
         >
-          {showSideBar ? <ArrowBackIosOutlined /> : <ArrowForwardIosOutlined />}
+          {isSideBarVisible ? (
+            <ArrowBackIosOutlined />
+          ) : (
+            <ArrowForwardIosOutlined />
+          )}
         </IconButton>
       </Box>
     </>

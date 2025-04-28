@@ -1,39 +1,39 @@
 import { Box } from "@mui/material";
 import GoogleMapReact from "google-map-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const VITE_GOOGLE_MAP_API_KEY = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
 
-function Map({ centerCoordinates, cityCoordinates, onCityClick }) {
+function Map({
+  centerCoordinates,
+  citiesCoordinates,
+  isSideBarVisible,
+  handleCityClick,
+}) {
   const [zoom] = useState(12);
 
-  const [center, setCenter] = useState({
-    lat: centerCoordinates.lat,
-    lng: centerCoordinates.lng,
-  });
-
-  useEffect(() => {
-    setCenter({
-      lat: centerCoordinates.lat,
-      lng: centerCoordinates.lng,
-    });
-  }, [centerCoordinates]);
-
-  return cityCoordinates && cityCoordinates.length > 0 ? (
-    <Box sx={{ width: "100%", height: "100vh", position: "absolute" }}>
+  return citiesCoordinates.length > 0 ? (
+    <Box
+      sx={{
+        height: "100vh",
+        flexGrow: 1,
+        width: isSideBarVisible ? "calc(100% - 450px)" : "100%",
+        transition: "all 0.3s ease",
+      }}
+    >
       <GoogleMapReact
         bootstrapURLKeys={{ key: VITE_GOOGLE_MAP_API_KEY }}
-        center={center}
+        center={centerCoordinates}
         zoom={zoom}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => {
-          cityCoordinates.forEach((city) => {
+          citiesCoordinates.forEach((city) => {
             const marker = new maps.Marker({
               position: { lat: city.lat, lng: city.lng },
               map,
               title: city.text,
             });
-            marker.addListener("click", (e) => onCityClick(e, city));
+            marker.addListener("click", (e) => handleCityClick(e, city));
           });
         }}
       />

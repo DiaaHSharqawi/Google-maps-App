@@ -1,6 +1,6 @@
 import { Box, List, ListItem, ListItemText } from "@mui/material";
 
-function SideBar({ cityCoordinates, onCityClick }) {
+function SideBar({ citiesCoordinates, handleCityClick }) {
   return (
     <Box
       sx={{
@@ -11,13 +11,13 @@ function SideBar({ cityCoordinates, onCityClick }) {
         padding: "16px",
       }}
     >
-      <h1>City Coordinates</h1>
+      <h1>Cities coordinates</h1>
       <List>
-        {cityCoordinates.map((city, index) => (
+        {citiesCoordinates.map((city, index) => (
           <ListItem
             key={index}
             sx={{ borderBottom: "1px solid #ddd", cursor: "pointer" }}
-            onClick={(e) => onCityClick(e, city)}
+            onClick={() => handleCityClick(city)}
           >
             <ListItemText
               primary={city.text}
