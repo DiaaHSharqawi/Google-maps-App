@@ -4,20 +4,25 @@ import {
 } from "@mui/icons-material";
 import { Box, IconButton } from "@mui/material";
 
-function SideBarToggleButton({ isSideBarVisible, toggleSideBarVisibility }) {
+import { useContext } from "react";
+import { MapContext } from "../../context/MapContext";
+
+function MapViewToggleButton() {
+  const { isMapExpanded, toggleMapExpansion } = useContext(MapContext);
   return (
     <>
       <Box
         sx={{
           position: "absolute",
           top: "50%",
-          left: isSideBarVisible ? "30px" : "450px",
+          left: 0,
           transform: "translateY(-50%)",
           zIndex: 2,
+          padding: "10px",
         }}
       >
         <IconButton
-          onClick={toggleSideBarVisibility}
+          onClick={toggleMapExpansion}
           style={{
             color: "black",
             backgroundColor: "white",
@@ -26,7 +31,7 @@ function SideBarToggleButton({ isSideBarVisible, toggleSideBarVisibility }) {
             borderRadius: "50%",
           }}
         >
-          {isSideBarVisible ? (
+          {isMapExpanded ? (
             <ArrowBackIosOutlined />
           ) : (
             <ArrowForwardIosOutlined />
@@ -37,4 +42,4 @@ function SideBarToggleButton({ isSideBarVisible, toggleSideBarVisibility }) {
   );
 }
 
-export default SideBarToggleButton;
+export default MapViewToggleButton;

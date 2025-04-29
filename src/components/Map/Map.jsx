@@ -1,15 +1,11 @@
 import { Box } from "@mui/material";
 import GoogleMapReact from "google-map-react";
 import { useState } from "react";
+import MapViewToggleButton from "../MapViewToggleButton/MapViewToggleButton";
 
 const VITE_GOOGLE_MAP_API_KEY = import.meta.env.VITE_GOOGLE_MAP_API_KEY;
 
-function Map({
-  centerCoordinates,
-  citiesCoordinates,
-  isSideBarVisible,
-  handleCityClick,
-}) {
+function Map({ centerCoordinates, citiesCoordinates, handleCityClick }) {
   const [zoom] = useState(12);
 
   return (
@@ -39,6 +35,8 @@ function Map({
               });
             }}
           />
+
+          <MapViewToggleButton />
         </Box>
       ) : null}
     </>
