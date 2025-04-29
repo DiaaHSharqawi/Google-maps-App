@@ -16,7 +16,13 @@ function SideBar({ citiesCoordinates, handleCityClick }) {
         {citiesCoordinates.map((city, index) => (
           <ListItem
             key={index}
-            sx={{ borderBottom: "1px solid #ddd", cursor: "pointer" }}
+            sx={{
+              borderBottom: "1px solid #ddd",
+              cursor: "pointer",
+              "&:hover": {
+                backgroundColor: "#f5f5f5",
+              },
+            }}
             onClick={() => handleCityClick(city)}
           >
             <ListItemText
