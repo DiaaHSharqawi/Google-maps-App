@@ -1,27 +1,21 @@
 import { Box } from "@mui/material";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Map from "./components/Map/Map";
 import SideBar from "./components/SideBar/SideBar";
-import SideBarToggleButton from "./components/ToggleButton/ToggleButton";
 import { citiesCoordinates } from "./data/cityCoordinates";
 
+import { MapProvider } from "./context/MapContext";
+
 export default function App() {
+  const [isMapExpanded, setIsMapExpanded] = useState(false);
+
   const [centerCoordinates, setCenterCoordinates] = useState({
     lat: citiesCoordinates[0].lat,
     lng: citiesCoordinates[0].lng,
   });
 
-  const [isSideBarVisible, seIsSideBarVisible] = useState(false);
-
-  const toggleSideBarVisibility = () => {
-    seIsSideBarVisible(!isSideBarVisible);
-  };
-
   const handleCityClick = (cityCoordinates) => {
-    console.log("City clicked:", cityCoordinates);
-
     const { lat, lng } = cityCoordinates;
-
     setCenterCoordinates({
       lat: lat,
       lng: lng,
@@ -38,24 +32,24 @@ export default function App() {
         flexDirection: "row",
       }}
     >
-      {isSideBarVisible && (
+      {!isMapExpanded && (
         <SideBar
           citiesCoordinates={citiesCoordinates}
           handleCityClick={handleCityClick}
         />
       )}
 
-      <Map
-        isSideBarVisible={isSideBarVisible}
-        citiesCoordinates={citiesCoordinates}
-        centerCoordinates={centerCoordinates}
-        handleCityClick={handleCityClick}
-      />
-
-      <SideBarToggleButton
-        isSideBarVisible={!isSideBarVisible}
-        toggleSideBarVisibility={toggleSideBarVisibility}
-      />
+      <MapProvider
+        isMapExpanded={isMapExpanded}
+        setIsMapExpanded={setIsMapExpanded}
+      >
+        <Map
+          citiesCoordinates={citiesCoordinates}
+          centerCoordinates={centerCoordinates}
+          handleCityClick={handleCityClick}
+        />
+      </MapProvider>
     </Box>
   );
 }
+1;
