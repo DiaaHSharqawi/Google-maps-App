@@ -31,7 +31,15 @@ function Map({ centerCoordinates, citiesCoordinates, handleCityClick }) {
                   map,
                   title: city.text,
                 });
-                marker.addListener("click", (e) => handleCityClick(e, city));
+                marker.addListener("click", (e) => {
+                  const lat = e.latLng.lat();
+                  const lng = e.latLng.lng();
+
+                  handleCityClick({
+                    lat: lat,
+                    lng: lng,
+                  });
+                });
               });
             }}
           />
