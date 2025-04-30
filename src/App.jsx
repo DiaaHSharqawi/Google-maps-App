@@ -15,6 +15,7 @@ export default function App() {
   });
 
   const handleCityClick = (cityCoordinates) => {
+    console.log("City coordinates clicked:", cityCoordinates);
     const { lat, lng } = cityCoordinates;
     setCenterCoordinates({
       lat: lat,
